@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="maze.css">
+    <title>Maze</title>
+</head>
+
+<body>
+    <div id="startScreen">
+        <h1>SHIFT MAZE</h1>
+        <button id="easyButton">Easy</button>
+        <button id="normalButton">Normal</button>
+        <button id="hardButton">Hard</button>
+    </div>
+
+    <div id="instructionScreen" style="display: none;">
+        <p class="instruction-label">MOVE</p>
+        <svg width="180" height="140" viewBox="0 0 180 140">
+            <rect x="60" y="10" width="50" height="50" rx="4" fill="none" stroke="var(--accent-dim)" stroke-width="2"/>
+            <text x="85" y="42" text-anchor="middle" fill="var(--accent)" font-family="var(--font-mono)" font-size="20">W</text>
+    
+            <rect x="10" y="70" width="50" height="50" rx="4" fill="none" stroke="var(--accent-dim)" stroke-width="2"/>
+            <text x="35" y="102" text-anchor="middle" fill="var(--accent)" font-family="var(--font-mono)" font-size="20">A</text>
+    
+            <rect x="60" y="70" width="50" height="50" rx="4" fill="none" stroke="var(--accent-dim)" stroke-width="2"/>
+            <text x="85" y="102" text-anchor="middle" fill="var(--accent)" font-family="var(--font-mono)" font-size="20">S</text>
+    
+            <rect x="110" y="70" width="50" height="50" rx="4" fill="none" stroke="var(--accent-dim)" stroke-width="2"/>
+            <text x="135" y="102" text-anchor="middle" fill="var(--accent)" font-family="var(--font-mono)" font-size="20">D</text>
+        </svg>
+        <p class="instruction-note">いずれかのキーを押すと開始します</p>
+    </div>
+
+    <div id="clearScreen" style="display: none;">
+        <h1>CLEAR!!</h1>
+        <p id="clearTimeDisplay"></p>
+        <button id="retryButton">もう一度遊ぶ</button>
+        <button id="homeButton">ホームに戻る</button>
+    </div>
+
+    <div class="container" id="gameScreen" style="display: none;">
+        <div id="timerDisplay">00:00</div>
+        <div class="maze" id="maze">
+        </div>
+    </div>
+    
+    <script src="maze.js"></script>
+</body>
+</html>
+
+<!-- 埋まった時に、呪文みたいなのを打てば解除できるとか面白そうではある -->

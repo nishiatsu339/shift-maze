@@ -1,0 +1,223 @@
+:root{
+    --bg-void: #0a0e0f;
+    --bg-panel: #10181a;
+    --wall-color: #2d5c54;
+    --path-color: #060a0a;
+    --accent: #00ff9d;
+    --accent-dim: #00623c;
+    --warning: #ff3b30;
+    --text-main: #d8f5e8;
+    --font-mono: "Space Mono", monospace;
+    --font-display: "Space Mono", monospace;
+
+    --cells-size: 15px;
+    --maze-size: calc(var(--cells-size) * 51);
+}
+
+body{
+    background-color: var(--bg-void);
+    color: var(--text-main);
+    font-family: var(--font-mono);
+}
+
+#startScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 2rem;
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, rgba(0,255,157,0.06),transparent 60%),var(--bg-void);
+}
+
+#startScreen::before{
+    content: "SYSTEM READY";
+    position: absolute;
+    top: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-dim);
+}
+
+#startScreen::after{
+    content: "SELECT DIFFICULTY TO BEGIN";
+    position: absolute;
+    bottom: 3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-dim);
+}
+
+#startScreen h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    text-shadow: 0 0 12px rgba(0,255,157,0.5);
+}
+
+#startScreen button{
+    width: 240px;
+    padding: 0.9rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--accent-dim);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#startScreen button:hover,
+#startScreen button:focus-visible{
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px rgba(0,255,157,0.3);
+}
+
+#instructionScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 14, 15, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.instruction-label{
+    letter-spacing: 0.3em;
+    color: var(--ceent-dim);
+}
+
+.instruciton-note{
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.container{
+    position: relative;
+    background-color: var(--bg-void);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.maze{
+    width: var(--maze-size);
+    height: var(--maze-size);
+    margin: 0 auto;
+    display: grid;
+    box-shadow: 0 0 40px rgba(0,255,157,0.15);
+    /* outline: 1px solid var(--accent-dim); */
+    /* grid-template-columns: repeat(51,1fr);
+    grid-template-rows: repeat(51,1fr); */
+}
+
+.cells{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--path-color);
+}
+
+.cells.pillar,
+.cells.wall,
+.cells.border-wall{
+    background-color: var(--wall-color);
+}
+
+.koma{
+    border-radius: 50%;
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+#timerDisplay{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(0,255,157,0.5);
+}
+
+#clearScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 14, 15, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+#clearScreen h1{
+    font-size: 2.5rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+}
+
+#clearTimeDisplay{
+    color: var(--accent);
+    font-size: 1.8rem;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 8px rgba(0,255,157,0.5);
+}
+
+#clearScreen button{
+    width: 240px;
+    padding: 0.9rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--accent-dim);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    cursor: pointer;
+}
+
+#clearScreen button:hover,
+#clearScreen button:focus-visible{
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px rgba(0,255,157,0.3);
+}
+
+.cells.goal-marker{
+    background-color: var(--warning);
+    box-shadow: 0 0 12px var(--warning);
+}
+
+@keyframes wallPulse{
+    0%{
+        background-color: var(--wall-color);
+    }
+    50%{
+        background-color: var(--warning);
+    }
+    100%{
+        background-color: var(--wall-color);
+    }
+}
+
+.maze.warning-pulse .cells.wall,
+.maze.warning-pulse .cells.border-wall,
+.maze.warning-pulse .cells.pillar{
+    animation: wallPulse 0.8s ease;
+}
