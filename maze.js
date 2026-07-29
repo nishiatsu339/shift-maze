@@ -151,7 +151,7 @@ function initGame(){
 
 
 let timerStarted = false;
-const startSign = new Audio('sound/start.mp3');
+const startSign = new Audio('start.mp3');
 let startSignStarted = false;
 document.addEventListener('keydown', function(event){
     if(!timerStarted){
@@ -204,7 +204,7 @@ document.addEventListener('keydown', function(event){
             clearTimeout(goalTimeoutId);
             clearInterval(timerDisplayIntervalId);
 
-            const clearsound = new Audio('sound/clear.mp3');
+            const clearsound = new Audio('clear.mp3');
             clearsound.play();
 
             const clearTimeDisplay = document.getElementById('clearTimeDisplay');
@@ -324,7 +324,7 @@ function scheduleNextMazeChange(){
 
     alertTimeoutId = setTimeout(function(){
         if(isGoalReached) return;
-        const alertSound = new Audio('sound/alert.mp3');
+        const alertSound = new Audio('alert.mp3');
         alertSound.play();
 
         maze.classList.add('warning-pulse');
